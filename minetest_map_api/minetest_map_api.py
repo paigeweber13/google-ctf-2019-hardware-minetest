@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import zlib
 
 DB_NAME = 'google-ctf-2019-hardware-minetest-map/map.sqlite'
 MAP_DOWNLOAD_URL = 'https://capturetheflag.withgoogle.com/#challenges/hardware-minetest'
@@ -46,8 +47,11 @@ def main():
         return
     
     first_block = blocks[0]
+    # first_block_data = zlib.decompress(first_block[1])
+    first_block_data = first_block[1]
     print('pos:', getIntegerAsBlock(first_block[0]))
-    print('block data:', first_block[1])
+    print('block data:', first_block_data)
+    print('block data, truncated:', first_block_data[7:])
 
 if __name__ == '__main__':
     main()
